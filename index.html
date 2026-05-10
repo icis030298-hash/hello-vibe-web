@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디코 명예의 전당 🏆</title>
+    <style>
+        /* 디스코드 스타일 색상 변수 */
+        :root {
+            --discord-bg: #313338;       /* 기본 배경색 */
+            --discord-card: #2b2d31;     /* 박스(카드) 배경색 */
+            --discord-text: #dbdee1;     /* 기본 글자색 */
+            --discord-header: #f2f3f5;   /* 제목 글자색 */
+            --discord-blurple: #5865F2;  /* 디스코드 포인트 컬러 (파란보라색) */
+            --discord-muted: #b5bac1;    /* 흐린 글자색 */
+        }
+
+        body {
+            background-color: var(--discord-bg);
+            color: var(--discord-text);
+            /* 디스코드 폰트와 비슷한 느낌의 폰트 설정 */
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 상단 헤더 (서버 이름 같은 느낌) */
+        header {
+            width: 100%;
+            background-color: var(--discord-card);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            border-bottom: 2px solid var(--discord-blurple);
+        }
+
+        header h1 {
+            margin: 0;
+            color: var(--discord-header);
+            font-size: 28px;
+        }
+
+        header p {
+            color: var(--discord-muted);
+            margin: 10px 0 0 0;
+            font-size: 14px;
+        }
+
+        /* 메인 컨텐츠 영역 */
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin: 40px auto;
+        }
+
+        /* 박제 카드 디자인 */
+        .post-card {
+            background-color: var(--discord-card);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        /* 가상의 프로필 이미지 */
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--discord-blurple);
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .post-title {
+            color: var(--discord-header);
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .post-meta {
+            font-size: 12px;
+            color: var(--discord-muted);
+            margin-top: 4px;
+        }
+
+        /* 사진/영상 들어가는 곳 */
+        .media-container {
+            width: 100%;
+            margin: 15px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #1e1f22;
+        }
+
+        .media-container img, 
+        .media-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 댓글 영역 디자인 */
+        .comments-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #3f4147;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎮 우리들의 흑역사 박제소</h1>
+        <p>디스코드에서 있었던 레전드 순간들을 영원히 기억합니다.</p>
+    </header>
+
+    <div class="container">
+        <!-- ⭐️ 첫 번째 박제 컨텐츠 -->
+        <article class="post-card">
+            <div class="post-header">
+                <div class="avatar">김</div>
+                <div>
+                    <h2 class="post-title">어제 롤 0킬 12데스 레전드 사건</h2>
+                    <div class="post-meta">박제한 사람: 김친구 | 2026. 05. 10 오후 11:30</div>
+                </div>
+            </div>
+            
+            <div class="media-container">
+                <!-- 이미지를 넣고 싶다면 src 안에 이미지 파일명이나 링크를 넣으세요! -->
+                <img src="https://via.placeholder.com/800x400/1e1f22/dbdee1?text=여기에+웃긴+스샷+또는+움짤(GIF)+삽입" alt="레전드 스크린샷">
+                
+                <!-- 영상을 넣고 싶다면 위 img 태그를 지우고 아래 코드를 사용하세요 -->
+                <!-- 
+                <video controls>
+                    <source src="funny-moment.mp4" type="video/mp4">
+                </video> 
+                -->
+            </div>
+
+            <!-- ⭐️ Disqus 댓글 창이 표시될 영역 -->
+            <div class="comments-section">
+                <div id="disqus_thread"></div>
+            </div>
+        </article>
+    </div>
+
+    <!-- ⭐️ Disqus 연동 스크립트 -->
+    <script>
+        /**
+        *  추천 설정: 이 페이지의 고유 URL과 식별자를 설정하세요.
+        */
+        /*
+        var disqus_config = function () {
+            this.page.url = PAGE_URL;  // 사이트를 호스팅한 뒤 URL을 여기에 넣으세요 (나중에)
+            this.page.identifier = 'post-01'; // 각 게시물마다 고유한 ID를 지정해주세요.
+        };
+        */
+
+        (function() { // 절대 이 아래 코드는 건드리지 마세요!
+            var d = document, s = d.createElement('script');
+            
+            // 🔥 중요: 'YOUR_DISQUS_SHORTNAME' 부분을 본인이 만든 디스커스 숏네임으로 꼭 변경하세요!
+            s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js';
+            
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>댓글을 보려면 자바스크립트를 활성화해주세요! <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</body>
+</html>
